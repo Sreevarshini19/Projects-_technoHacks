@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      *{
+        font-size: large;
+        font-family: 'Courier New', Courier, monospace;
+      }
+   button{
+    padding:12px;
+    background-color: grey;
+    color:white;
+    border-color: none;
+    border-radius: 4px;
+    margin:2.5px;
+    cursor:pointer;
+   }
+   #calc{
+    /* background-color: gainsboro; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+    background-color: rgb(192, 189, 189);
+    width:min-content;
+    padding: 23px;
+    border-radius: 5px;
+   }
+  input{
+    padding:9px;
+    background-color: rgb(246, 236, 236);
+    color:rgb(18, 17, 17);
+    border-color: none;
+    border-radius: 4px;
+    margin:2px;
+    width:max-content;
+  }
+  #clear{
+    padding-left:21.5px ; 
+    padding-right:21.5px
+  }
+  </style>
+  </head>
+  <body>
+    <div id="calc">
+      <input type="text" id="output">
+      <div id="num">
+        <div class="row">
+        <button id="clear" onclick="terase()">AC</button>
+        <button id="del" onclick="erase()">DEL</button>
+        <button class="choose"  value="%">%</button>
+        </div>
+        <div class="row">
+        <button class="choose" value="7">7</button>
+        <button class="choose" value="8" >8</button>
+        <button class="choose" value="9">9</button>
+        <button class="choose" value="*">*</button>
+      </div>
+      <div class="row">
+        <button class="choose" value="4">4</button>
+        <button class="choose"  value="5">5</button>
+        <button class="choose"  value="6">6</button>
+        <button class="choose"  value="-">-</button>
+      </div>
+        <div class="row">
+        <button class="choose"  value="1">1</button>
+        <button class="choose"  value="2">2</button>
+        <button class="choose"  value="3">3</button>
+        <button class="choose"  value="+">+</button>
+        </div>
+        <div class="row">
+          <button class="choose"  value="0">0</button>
+          <button class="choose"  value=".">.</button>
+          <button class="choose" onclick="calc()">=</button>
+          <button class="choose"  value="/">/</button>
+          </div>
+      </div>
+    </div>
+    </div>
+    <script>
+      let output=document.getElementById("output");
+      let choice=document.getElementsByClassName("choose");
+      choice=Array.from(choice);
+      choice.forEach(detect);
+      function detect(e){
+        e.addEventListener("click",function(){
+          output.value+=e.value;
+          // console.log(e.value);
+        })
+        }
+      function erase(){
+        let ans=document.getElementById("output");
+        ans.value=ans.value.slice(0,-1);
+      }
+      function terase(){
+        let ans=document.getElementById("output");
+        ans.value=" ";
+      }
+      function calc(){
+        let ans=document.getElementById("output");
+        try{
+          ans.value=eval(ans.value);
+        }
+        catch(err){
+          alert("Invalid input");
+        }
+      }
+     
+    </script>
+  </body>
+</html>

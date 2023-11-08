@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      body{
+        background: linear-gradient(to left,rgb(132, 132, 229),pink);
+        background-size:cover;
+        line-height: 42px;
+        font-size: larger;
+        
+        background-position:fixed;
+      }
+      #login{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 12%;
+        border-color:  rgb(250, 243, 243);
+        border-style: double;
+      }
+      button{
+        padding:6px;
+        font-size: large;
+        background-color: rgb(227, 123, 248);
+        border-radius: 5px;
+        border-color: white;
+        margin:24px;
+        float:right;
+        cursor:pointer;
+      }
+      input{
+        margin-left: 12px;
+        padding: 4px;
+        border-radius: 4px;
+        border:none;
+      }
+      h2{
+        margin-left:40%;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="login">
+    <form onsubmit="return validate()">
+      <h2>LOGIN</h2>
+     <div class="eachcontent">
+      <label>Username</label>
+      <input type="text" id="username" autocomplete="on">
+    </div>
+    <div class="eachcontent">
+      <label>Password</label>
+      <input type="password" id="password" autocomplete="on">
+    </div>
+      <div class="eachcontent">
+      <label>Confirm password</label>
+      <input type="password" id="cpassword" autocomplete="on">
+    </div>    
+      <button type="submit">Submit</button>
+
+    </form>
+  </div>
+    <script>
+      function validate(){
+        let username=document.getElementById("username");
+        let password=document.getElementById("password");
+        let cpassword=document.getElementById("cpassword");
+        let each=document.getElementsByClassName("eachcontent");
+        if(username.value.trim()==""){
+            error(username,"Enter the username");
+           
+        }
+        else if(password.value.trim().length<5){
+            error(password,"Enter the password of minimum length 5");
+          }
+        else if(cpassword.value.trim()!=password.value.trim()){
+              error(password,"Confirm password doesn't match the password");
+              
+        }
+        if(username.value.trim()=="" ||password.value.trim()==""||password.value.trim().length<5 ||cpassword.value.trim()!=password.value.trim()){
+            return false;
+        }
+        else{
+          return true;
+        }
+      }
+      function error(tagid,text){
+            let tdiv=tagid.parentElement;
+            let nline=document.createElement("br");
+            let naya=document.createElement("span");
+            naya.innerHTML=text;
+            tdiv.appendChild(nline);
+            tdiv.appendChild(naya);
+      }
+    </script>
+  </body>
+</html>
